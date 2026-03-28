@@ -1,0 +1,52 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+.env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Key files (보안상 git에 포함하지 않음)
+key/
+
+# Data files (요청 기록)
+data/
+
+# 참고/요구사항 문서
+리퀘스트헤더형식참고/
+요구사항/

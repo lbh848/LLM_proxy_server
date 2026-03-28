@@ -1,0 +1,585 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #eee;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #00d4ff;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section h2 {
+    color: #00d4ff;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.stat-card {
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.stat-card .model-name {
+    font-size: 0.9em;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.stat-card .stat-value {
+    font-size: 1.5em;
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+.stat-card .stat-label {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.pending-section {
+    background: rgba(255, 193, 7, 0.1);
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.pending-section h2 {
+    color: #ffc107;
+}
+
+.pending-item {
+    background: rgba(255, 193, 7, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pending-item .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 193, 7, 0.3);
+    border-top-color: #ffc107;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.record-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #00d4ff;
+}
+
+.record-card.vertex {
+    border-left-color: #4285f4;
+}
+
+.record-card.copilot {
+    border-left-color: #10a37f;
+}
+
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.record-model {
+    font-weight: bold;
+    color: #00d4ff;
+}
+
+.record-time {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.record-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.record-stat {
+    font-size: 0.9em;
+}
+
+.record-stat span {
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+.collapsible {
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: #aaa;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-right: 10px;
+}
+
+.collapsible:hover {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+.content-box {
+    display: none;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: none;
+    overflow-y: visible;
+    font-size: 0.85em;
+    line-height: 1.5;
+}
+
+.content-box.show {
+    display: block;
+}
+
+.btn-reset {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: transform 0.2s;
+}
+
+.btn-reset:hover {
+    transform: scale(1.05);
+}
+
+.btn-settings {
+    background: linear-gradient(135deg, #4a90d9, #357abd);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: transform 0.2s;
+    margin-right: 10px;
+}
+
+.btn-settings:hover {
+    transform: scale(1.05);
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4caf50;
+    margin-right: 8px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.no-records {
+    text-align: center;
+    color: #666;
+    padding: 40px;
+}
+
+.latency {
+    color: #4caf50 !important;
+}
+
+.token-info {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.token-box {
+    background: rgba(0, 212, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.token-box .label {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.token-box .value {
+    font-size: 1.2em;
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    margin: 10% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 450px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h2 {
+    color: #00d4ff;
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #ff416c;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-description {
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.setting-item {
+    margin-bottom: 20px;
+}
+
+.setting-item label {
+    display: block;
+    color: #00d4ff;
+    font-size: 0.95em;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.setting-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.setting-input-group input {
+    width: 80px;
+    padding: 10px 15px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 1em;
+    text-align: center;
+}
+
+.setting-input-group input:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.setting-hint {
+    color: #888;
+    font-size: 0.85em;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #aaa;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #00d4ff, #0099cc);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: transform 0.2s;
+}
+
+.btn-save:hover {
+    transform: scale(1.05);
+}
+
+/* 설정 섹션 스타일 */
+.setting-section {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setting-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.setting-section-title {
+    color: #00d4ff;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+}
+
+/* 캐싱 뱃지 스타일 */
+.cache-badge {
+    font-size: 0.75em;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.cache-badge.cached {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.cache-badge.not-cached {
+    background: rgba(158, 158, 158, 0.2);
+    color: #9e9e9e;
+    border: 1px solid rgba(158, 158, 158, 0.3);
+}
+
+/* 재시도 버튼 스타일 */
+.btn-retry {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-retry:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+/* 요청 취소 버튼 스타일 */
+.btn-cancel-request {
+    background: linear-gradient(135deg, #e53935, #c62828);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-cancel-request:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(229, 57, 53, 0.5);
+}
+
+/* 토큰 차트 컨테이너 스타일 */
+.token-charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.token-chart-item {
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    min-width: 200px;
+    flex: 1;
+    max-width: 350px;
+}
+
+.token-chart-item.output-chart {
+    background: rgba(76, 175, 80, 0.05);
+    border-color: rgba(76, 175, 80, 0.2);
+}
+
+.token-chart-item .chart-title {
+    font-size: 0.95em;
+    font-weight: bold;
+    color: #ddd;
+    margin-bottom: 4px;
+}
+
+.token-chart-item .chart-total {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.token-chart-item .chart-canvas-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 10px;
+}
+
+.token-chart-item .chart-canvas-container canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.token-chart-item .chart-legend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75em;
+}
+
+.token-chart-item .chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.token-chart-item .chart-legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+/* 비용 스타일 */
+.stat-card .stat-cost {
+    font-size: 0.9em;
+    color: #4caf50;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-card .stat-cost-label {
+    font-size: 0.8em;
+    color: #888;
+}

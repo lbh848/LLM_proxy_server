@@ -1,0 +1,30 @@
+{
+  "pricing_unit": "USD per 1M tokens",
+  "models": [
+    {
+      "model": "Gemini 3.1 Pro",
+      "pricing": [
+        {
+          "context": "up to 200K tokens",
+          "input_price_usd_per_1M_tokens": 2.0,
+          "output_price_usd_per_1M_tokens": 12.0
+        },
+        {
+          "context": "over 200K tokens",
+          "input_price_usd_per_1M_tokens": 4.0,
+          "output_price_usd_per_1M_tokens": 18.0
+        }
+      ]
+    },
+    {
+      "model": "Gemini 3.0 Flash",
+      "pricing": [
+        {
+          "context": "standard",
+          "input_price_usd_per_1M_tokens": 0.5,
+          "output_price_usd_per_1M_tokens": 3.0
+        }
+      ]
+    }
+  ]
+}
