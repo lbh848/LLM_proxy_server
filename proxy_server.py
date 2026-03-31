@@ -714,7 +714,7 @@ async def proxy_vertex(request: Request, model_name: str):
 # Copilot 프록시
 @app.api_route("/copilot/{model_name:path}", methods=["GET", "POST", "PUT", "DELETE"])
 async def proxy_copilot(request: Request, model_name: str):
-    """GitHub Copilot API 프록시 - gpt-4.1, gpt-41 지원, 400 오류 시 재시도"""
+    """GitHub Copilot API 프록시 - gpt-4.1, gpt-41, gemini-3.1-pro-preview, gemini-3-flash-preview 지원, 400 오류 시 재시도"""
     start_time = time.time()
     request_id = hashlib.md5(f"{time.time()}{model_name}".encode()).hexdigest()[:8]
     
@@ -724,9 +724,9 @@ async def proxy_copilot(request: Request, model_name: str):
     # 경로에서 접미사 제거
     clean_model_name = model_name.split("/")[0] if "/" in model_name else model_name
     
-    # 지원하는 모델 확인 (gpt-4.1, gpt-41 지원)
-    if clean_model_name not in ["gpt-4.1", "gpt-41"]:
-        raise HTTPException(status_code=400, detail=f"등록되지 않은 모델입니다: {clean_model_name}. 지원 모델: gpt-4.1, gpt-41")
+    # 지원하는 모델 확인 (gpt-4.1, gpt-41, gemini-3.1-pro-preview, gemini-3-flash-preview 지원)
+    if clean_model_name not in ["gpt-4.1", "gpt-41", "gemini-3.1-pro-preview", "gemini-3-flash-preview"]:
+        raise HTTPException(status_code=400, detail=f"등록되지 않은 모델입니다: {clean_model_name}. 지원 모델: gpt-4.1, gpt-41, gemini-3.1-pro-preview, gemini-3-flash-preview")
     
     # 요청 본문 읽기
     body = await request.body()
@@ -749,11 +749,8 @@ async def proxy_copilot(request: Request, model_name: str):
     # Copilot API URL
     url = "https://api.githubcopilot.com/chat/completions"
     
-    # 모델 설정 - gpt-41로 요청 시 gpt41로 변환 (에러 메시지 관측용), gpt-4.1은 그대로
-    if clean_model_name == "gpt-41":
-        request_body["model"] = "gpt41"
-    else:
-        request_body["model"] = clean_model_name
+    # 모델 설정 - 모델명 그대로 전달
+    request_body["model"] = clean_model_name
     actual_model = clean_model_name
     
     # 대기 요청 등록 - 전체 요청 본문을 JSON 문자열로 저장
