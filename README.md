@@ -43,6 +43,10 @@ pip install -r requirements.txt
   ```json
   {"key": "gho_xxxxx"}
   ```
+- **ZAI**: `zai.key` 파일에 API 키 저장 (텍스트)
+  ```
+  bxxxxxxxxxxxxxxxxxxxxxxxxxxx.xxxxx
+  ```
 
 ## 실행
 
@@ -59,11 +63,33 @@ python proxy_server.py
 
 서버가 시작되면:
 - **대시보드**: http://localhost:8190
-- **Vertex AI**: http://localhost:8190/vertex/{model_name}
-http://localhost:8190/vertex/gemini-3-flash-preview
 
-- **Copilot**: http://localhost:8190/copilot/{model_name}
+## 사용 가능한 서비스
+
+### Vertex AI (Google)
+```
+http://localhost:8190/vertex/gemini-3.1-pro-preview
+http://localhost:8190/vertex/gemini-3-flash-preview
+http://localhost:8190/vertex/gemini-3.1-pro
+http://localhost:8190/vertex/gemini-3-flash
+http://localhost:8190/vertex/gemini-2.5-pro
+http://localhost:8190/vertex/gemini-2.5-flash
+```
+
+### GitHub Copilot
+```
 http://localhost:8190/copilot/gpt-4.1
+http://localhost:8190/copilot/gpt-41
+http://localhost:8190/copilot/gemini-3.1-pro-preview
+http://localhost:8190/copilot/gemini-3-flash-preview
+http://localhost:8190/copilot/claude-opus-4.5
+http://localhost:8190/copilot/claude-opus-4-6
+```
+
+### ZAI (GLM)
+```
+http://localhost:8190/zai/glm-5.1
+```
 
 ### 연결 테스트
 
@@ -89,6 +115,16 @@ POST http://localhost:8190/vertex/gemini-3-flash-preview
 
 ```
 POST http://localhost:8190/copilot/gpt-4.1
+POST http://localhost:8190/copilot/gemini-3.1-pro-preview
+POST http://localhost:8190/copilot/gemini-3-flash-preview
+POST http://localhost:8190/copilot/claude-opus-4.5
+POST http://localhost:8190/copilot/claude-opus-4-6
+```
+
+### ZAI (GLM)
+
+```
+POST http://localhost:8190/zai/glm-5.1
 ```
 
 ### 모니터링 API
@@ -126,7 +162,8 @@ LLM중계서버/
 ├── README.md           # 이 파일
 ├── key/                # API 키 폴더
 │   ├── rp5project-xxx.json  # Vertex AI 서비스 계정 키
-│   └── copilot.json         # Copilot API 키
+│   ├── copilot.json         # Copilot API 키
+│   └── zai.key              # ZAI API 키
 └── venv/               # 가상환경 (설치 후 생성)
 ```
 
@@ -138,9 +175,3 @@ LLM중계서버/
 PORT = 8190            # 서버 포트
 MAX_RECORDS = 500      # 최대 기록 수
 ```
-
-## 주의사항
-
-- API 키 파일은 보안상 Git에 커밋하지 마세요
-- 프로덕션 환경에서는 HTTPS를 사용하세요
-- 토큰 추정은 근사치이며, 실제 토큰 수는 API 응답에서 확인할 수 있습니다

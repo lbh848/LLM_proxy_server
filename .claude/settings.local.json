@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(gh repo:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(./venv/Scripts/pip install:*)",
+      "Bash(./venv/Scripts/python -c \"import tiktoken; enc = tiktoken.get_encoding\\(''cl100k_base''\\); print\\(''Hello world:'', len\\(enc.encode\\(''Hello world''\\)\\)\\); print\\(''안녕하세요:'', len\\(enc.encode\\(''안녕하세요''\\)\\)\\)\")",
+      "WebSearch",
+      "Bash(./venv/Scripts/python proxy_server.py)",
+      "Bash(python -m json.tool)",
+      "Bash(taskkill //F //IM python.exe)",
+      "Bash(grep -oP \".{0,80}\\(premium|usage_display|quota_display|request_count|requests_remaining\\).{0,80}\" C:/Users/lbh/Downloads/copilot-manager-v1.7.2.js)",
+      "Bash(python3:*)",
+      "Bash(python:*)"
     ]
   }
 }
